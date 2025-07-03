@@ -1,0 +1,9 @@
+
+{
+  "rewrites": [
+    {
+      "source": "/email-marketing/:path*",
+      "destination": "https://email-marketing-eta-six.vercel.app/:path*"
+    }
+  ]
+}
