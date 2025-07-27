@@ -9,7 +9,10 @@ import { Link } from 'react-router-dom';
 import Onboarding from '@/components/Onboarding';
 
 // Icons
-import { Users, Calculator, CreditCard, Megaphone, Truck, BarChart3, Target, GraduationCap, Headphones, User } from 'lucide-react';
+import { 
+  Users, Calculator, CreditCard, Megaphone, Truck, BarChart3, Target, GraduationCap, Headphones, User,
+  FileText, Keyboard, Settings, Package, FolderOpen, MessageSquare, ShoppingCart, DollarSign
+} from 'lucide-react';
 
 const Dashboard = () => {
   const { t } = useLanguage();
@@ -32,6 +35,63 @@ const Dashboard = () => {
     return <Onboarding />;
   }
 
+  const allTools = {
+    hr: [
+      { id: 'odoo', title: 'Odoo ERP', icon: Users, color: 'text-blue-600', visitUrl: 'https://odoo-five.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
+      { id: 'automation', title: 'Automation (n8n)', icon: Settings, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+    ],
+    accounting: [
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'powerbi', title: 'Power BI', icon: BarChart3, color: 'text-blue-600', visitUrl: 'https://powerbi-livid.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
+      { id: 'automation', title: 'Automation (n8n)', icon: Settings, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+    ],
+    sales: [
+      { id: 'pos', title: 'Point of Sales (POS)', icon: CreditCard, color: 'text-blue-600', visitUrl: 'https://pos-eight-blush.vercel.app/' },
+      { id: 'ghl-crm', title: 'GHL CRM', icon: Users, color: 'text-green-600', visitUrl: 'https://ghl-crm.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+    ],
+    marketing: [
+      { id: 'email-marketing', title: 'Email Marketing Platform', icon: Megaphone, color: 'text-blue-600', visitUrl: 'https://email-marketing-eta-six.vercel.app/' },
+      { id: 'powerbi', title: 'Power BI', icon: BarChart3, color: 'text-purple-600', visitUrl: 'https://powerbi-livid.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+    ],
+    operations: [
+      { id: 'bpm', title: 'Business Process Management', icon: Settings, color: 'text-blue-600', visitUrl: 'https://bpm-tau.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
+      { id: 'automation', title: 'Automation (n8n)', icon: Package, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+    ],
+    management: [
+      { id: 'portfolio', title: 'Portfolio Management', icon: BarChart3, color: 'text-blue-600', visitUrl: 'https://nexux-app-delta.vercel.app/' },
+      { id: 'roadmap', title: 'Product Roadmap', icon: Target, color: 'text-green-600', visitUrl: 'https://roadmap-seven-xi.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+    ],
+    product: [
+      { id: 'roadmap-app', title: 'Product Roadmap', icon: Target, color: 'text-blue-600', visitUrl: 'https://roadmap-seven-xi.vercel.app/' },
+      { id: 'powerbi', title: 'Power BI', icon: BarChart3, color: 'text-green-600', visitUrl: 'https://powerbi-livid.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+    ],
+    education: [
+      { id: 'student-consulting-crm', title: 'Student Consulting CRM', icon: Users, color: 'text-blue-600', visitUrl: 'https://study-pathways.vercel.app/' },
+      { id: 'appointment-booking', title: 'Appointment Booking', icon: GraduationCap, color: 'text-green-600', visitUrl: 'https://appointment-booking-bice.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+    ],
+    customer: [
+      { id: 'ghl-crm', title: 'GHL CRM', icon: Headphones, color: 'text-blue-600', visitUrl: 'https://ghl-crm.vercel.app/' },
+      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
+      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
+      { id: 'automation', title: 'Automation (n8n)', icon: MessageSquare, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+    ]
+  };
+
   const departments = [
     {
       id: 'hr',
@@ -41,9 +101,9 @@ const Dashboard = () => {
       color: 'text-blue-600',
       bgColor: 'bg-blue-50 dark:bg-blue-900/20',
       hoverColor: 'hover:bg-blue-100 dark:hover:bg-blue-900/30',
-      url: '/simulation/hr',
       description: 'Manage recruitment, employee records, and HR processes',
-      descriptionBn: 'নিয়োগ, কর্মচারী রেকর্ড এবং এইচআর প্রক্রিয়া পরিচালনা করুন'
+      descriptionBn: 'নিয়োগ, কর্মচারী রেকর্ড এবং এইচআর প্রক্রিয়া পরিচালনা করুন',
+      tools: allTools.hr
     },
     {
       id: 'accounting',
@@ -53,9 +113,9 @@ const Dashboard = () => {
       color: 'text-green-600',
       bgColor: 'bg-green-50 dark:bg-green-900/20',
       hoverColor: 'hover:bg-green-100 dark:hover:bg-green-900/30',
-      url: '/simulation/accounting',
       description: 'Handle financial transactions and accounting systems',
-      descriptionBn: 'আর্থিক লেনদেন এবং অ্যাকাউন্টিং সিস্টেম পরিচালনা করুন'
+      descriptionBn: 'আর্থিক লেনদেন এবং অ্যাকাউন্টিং সিস্টেম পরিচালনা করুন',
+      tools: allTools.accounting
     },
     {
       id: 'sales',
@@ -65,9 +125,9 @@ const Dashboard = () => {
       color: 'text-purple-600',
       bgColor: 'bg-purple-50 dark:bg-purple-900/20',
       hoverColor: 'hover:bg-purple-100 dark:hover:bg-purple-900/30',
-      url: '/simulation/sales',
       description: 'Practice sales transactions and customer management',
-      descriptionBn: 'বিক্রয় লেনদেন এবং গ্রাহক ব্যবস্থাপনা অনুশীলন করুন'
+      descriptionBn: 'বিক্রয় লেনদেন এবং গ্রাহক ব্যবস্থাপনা অনুশীলন করুন',
+      tools: allTools.sales
     },
     {
       id: 'marketing',
@@ -77,9 +137,9 @@ const Dashboard = () => {
       color: 'text-orange-600',
       bgColor: 'bg-orange-50 dark:bg-orange-900/20',
       hoverColor: 'hover:bg-orange-100 dark:hover:bg-orange-900/30',
-      url: '/simulation/marketing',
       description: 'Manage campaigns and marketing analytics',
-      descriptionBn: 'ক্যাম্পেইন এবং মার্কেটিং অ্যানালিটিক্স পরিচালনা করুন'
+      descriptionBn: 'ক্যাম্পেইন এবং মার্কেটিং অ্যানালিটিক্স পরিচালনা করুন',
+      tools: allTools.marketing
     },
     {
       id: 'operations',
@@ -89,9 +149,9 @@ const Dashboard = () => {
       color: 'text-indigo-600',
       bgColor: 'bg-indigo-50 dark:bg-indigo-900/20',
       hoverColor: 'hover:bg-indigo-100 dark:hover:bg-indigo-900/30',
-      url: '/simulation/operations',
       description: 'Streamline business processes and operations',
-      descriptionBn: 'ব্যবসায়িক প্রক্রিয়া এবং অপারেশনস সুগমীকরণ করুন'
+      descriptionBn: 'ব্যবসায়িক প্রক্রিয়া এবং অপারেশনস সুগমীকরণ করুন',
+      tools: allTools.operations
     },
     {
       id: 'management',
@@ -101,9 +161,9 @@ const Dashboard = () => {
       color: 'text-red-600',
       bgColor: 'bg-red-50 dark:bg-red-900/20',
       hoverColor: 'hover:bg-red-100 dark:hover:bg-red-900/30',
-      url: '/simulation/management',
       description: 'Strategic planning and business management',
-      descriptionBn: 'কৌশলগত পরিকল্পনা এবং ব্যবসা ব্যবস্থাপনা'
+      descriptionBn: 'কৌশলগত পরিকল্পনা এবং ব্যবসা ব্যবস্থাপনা',
+      tools: allTools.management
     },
     {
       id: 'product',
@@ -113,9 +173,9 @@ const Dashboard = () => {
       color: 'text-teal-600',
       bgColor: 'bg-teal-50 dark:bg-teal-900/20',
       hoverColor: 'hover:bg-teal-100 dark:hover:bg-teal-900/30',
-      url: '/simulation/product',
       description: 'Product development and innovation management',
-      descriptionBn: 'প্রোডাক্ট ডেভেলপমেন্ট এবং ইনোভেশন ব্যবস্থাপনা'
+      descriptionBn: 'প্রোডাক্ট ডেভেলপমেন্ট এবং ইনোভেশন ব্যবস্থাপনা',
+      tools: allTools.product
     },
     {
       id: 'education',
@@ -125,9 +185,9 @@ const Dashboard = () => {
       color: 'text-cyan-600',
       bgColor: 'bg-cyan-50 dark:bg-cyan-900/20',
       hoverColor: 'hover:bg-cyan-100 dark:hover:bg-cyan-900/30',
-      url: '/simulation/education',
       description: 'Student management and educational tools',
-      descriptionBn: 'শিক্ষার্থী ব্যবস্থাপনা এবং শিক্ষামূলক সরঞ্জাম'
+      descriptionBn: 'শিক্ষার্থী ব্যবস্থাপনা এবং শিক্ষামূলক সরঞ্জাম',
+      tools: allTools.education
     },
     {
       id: 'customer',
@@ -137,9 +197,9 @@ const Dashboard = () => {
       color: 'text-pink-600',
       bgColor: 'bg-pink-50 dark:bg-pink-900/20',
       hoverColor: 'hover:bg-pink-100 dark:hover:bg-pink-900/30',
-      url: '/simulation/customer',
       description: 'Customer support and service management',
-      descriptionBn: 'গ্রাহক সাপোর্ট এবং সেবা ব্যবস্থাপনা'
+      descriptionBn: 'গ্রাহক সাপোর্ট এবং সেবা ব্যবস্থাপনা',
+      tools: allTools.customer
     }
   ];
 
@@ -200,23 +260,45 @@ const Dashboard = () => {
             {departments.map((department) => {
               const Icon = department.icon;
               return (
-                <Link key={department.id} to={department.url}>
-                  <Card className={`${department.bgColor} ${department.hoverColor} transition-all duration-200 cursor-pointer border-2 hover:border-gray-300 dark:hover:border-gray-600`}>
-                    <CardHeader className="pb-4">
-                      <CardTitle className="flex items-center gap-3">
-                        <Icon className={`h-8 w-8 ${department.color}`} />
-                        <span className="text-xl font-semibold">
-                          {t(department.title, department.titleBn)}
-                        </span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 dark:text-gray-400">
-                        {t(department.description, department.descriptionBn)}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <Card key={department.id} className={`${department.bgColor} ${department.hoverColor} transition-all duration-200 border-2`}>
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center gap-3">
+                      <Icon className={`h-8 w-8 ${department.color}`} />
+                      <span className="text-xl font-semibold">
+                        {t(department.title, department.titleBn)}
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      {t(department.description, department.descriptionBn)}
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-sm">
+                        {t("Available Tools:", "উপলব্ধ টুলস:")}
+                      </h4>
+                      {department.tools.map((tool) => {
+                        const ToolIcon = tool.icon;
+                        return (
+                          <div key={tool.id} className="flex items-center justify-between p-2 rounded-md bg-white/50 dark:bg-gray-800/50">
+                            <div className="flex items-center gap-2">
+                              <ToolIcon className={`h-4 w-4 ${tool.color}`} />
+                              <span className="text-sm font-medium">{tool.title}</span>
+                            </div>
+                            <a
+                              href={tool.visitUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs bg-skill-blue text-white px-2 py-1 rounded hover:bg-skill-blue/80"
+                            >
+                              {t("Visit", "ভিজিট")}
+                            </a>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
