@@ -45,7 +45,7 @@
       "destination": "https://bpm-tau.vercel.app/:path*"
     },
     {
-      "source": "/appontment-booking/:path*",
+      "source": "/appointment-booking/:path*",
       "destination": "https://appointment-booking-bice.vercel.app/:path*"
     },
     {
