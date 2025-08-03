@@ -1,17 +1,5 @@
+{
   "rewrites": [
-    
-    {
-      "source": "/roadmap/:path*",
-      "destination": "https://roadmap-seven-xi.vercel.app/:path*"
-    },
-    {
-      "source": "/nexus/:path*",
-      "destination": "https://nexux-app-delta.vercel.app/:path*"
-    },
-    {
-      "source": "/odoo/:path*",
-      "destination": "https://odoo-five.vercel.app/:path*"
-    },
     {
       "source": "/automation/:path*",
       "destination": "https://automation-puce.vercel.app/:path*"
@@ -23,6 +11,18 @@
     {
       "source": "/zap/:path*",
       "destination": "https://zap-smoky-one.vercel.app/:path*"
+    },
+    {
+      "source": "/roadmap/:path*",
+      "destination": "https://roadmap-seven-xi.vercel.app/:path*"
+    },
+    {
+      "source": "/nexus/:path*",
+      "destination": "https://nexux-app-delta.vercel.app/:path*"
+    },
+    {
+      "source": "/odoo/:path*",
+      "destination": "https://odoo-five.vercel.app/:path*"
     },
     {
       "source": "/excel/:path*",
@@ -44,7 +44,10 @@
       "source": "/bpm/:path*",
       "destination": "https://bpm-tau.vercel.app/:path*"
     },
-    
+    {
+      "source": "/:path*",
+      "destination": "/nexus/:path*"
+    }
   ],
   "headers": [
     {
@@ -55,3 +58,4 @@
       ]
     }
   ]
+}
