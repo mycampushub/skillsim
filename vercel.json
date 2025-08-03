@@ -1,17 +1,58 @@
-
 {
   "rewrites": [
     {
-      "source": "/pos/:path*",
-      "destination": "https://pos-eight-blush.vercel.app/:path*"
+      "source": "/automation/:path*",
+      "destination": "https://automation-puce.vercel.app/:path*"
     },
     {
-      "source": "/appointment-booking/:path*",
-      "destination": "https://appointment-booking-bice.vercel.app/:path*"
+      "source": "/study-pathways/:path*",
+      "destination": "https://study-pathways.vercel.app/:path*"
     },
     {
-      "source": "/email-marketing/:path*",
-      "destination": "https://email-marketing-eta-six.vercel.app/:path*"
+      "source": "/zap/:path*",
+      "destination": "https://zap-smoky-one.vercel.app/:path*"
+    },
+    {
+      "source": "/roadmap/:path*",
+      "destination": "https://roadmap-seven-xi.vercel.app/:path*"
+    },
+    {
+      "source": "/nexus/:path*",
+      "destination": "https://nexux-app-delta.vercel.app/:path*"
+    },
+    {
+      "source": "/odoo/:path*",
+      "destination": "https://odoo-five.vercel.app/:path*"
+    },
+    {
+      "source": "/excel/:path*",
+      "destination": "https://excel-ashen-ten.vercel.app/:path*"
+    },
+    {
+      "source": "/powerbi/:path*",
+      "destination": "https://powerbi-livid.vercel.app/:path*"
+    },
+    {
+      "source": "/ghl-crm/:path*",
+      "destination": "https://ghl-crm.vercel.app/:path*"
+    },
+    {
+      "source": "/applications/:path*",
+      "destination": "https://applicatrion-tracking.vercel.app/:path*"
+    },
+    {
+      "source": "/bpm/:path*",
+      "destination": "https://bpm-tau.vercel.app/:path*"
+    },
+    
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" }
+      ]
     }
   ]
 }
