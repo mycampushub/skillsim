@@ -46,7 +46,7 @@
     },
     {
       "source": "/appointment-booking/:path*",
-      "destination": "https://appointment-booking-bice.vercel.app/:path*"
+      "destination": "https://appointment-booking-steel.vercel.app/:path*"
     },
     {
       "source": "/:path*",
