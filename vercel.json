@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/email-marketing/:path*",
-      "destination": "https://email-marketing-eta-six.vercel.app/:path*"
+      "destination": "https://email-marketing-theta-five.vercel.app/:path*"
     },
     {
       "source": "/study-pathways/:path*",
