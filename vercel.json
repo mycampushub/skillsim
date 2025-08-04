@@ -37,7 +37,7 @@
       "destination": "https://ghl-crm.vercel.app/:path*"
     },
     {
-      "source": "/applications/:path*",
+      "source": "/application-tracking/:path*",
       "destination": "https://applicatrion-tracking.vercel.app/:path*"
     },
     {
