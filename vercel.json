@@ -49,6 +49,34 @@
       "destination": "https://appointment-booking-steel.vercel.app/:path*"
     },
     {
+      "source": "/pos/:path*",
+      "destination": "https://pos-eight-blush.vercel.app/:path*"
+    },
+    {
+      "source": "/project-management/:path*",
+      "destination": "https://project-management-chi-eight.vercel.app/:path*"
+    },
+    {
+      "source": "/automation/:path*",
+      "destination": "https://automation-puce.vercel.app/:path*"
+    },
+    {
+      "source": "/typing/:path*",
+      "destination": "https://typing-theta-rose.vercel.app/:path*"
+    },
+    {
+      "source": "/hrms/:path*",
+      "destination": "https://hrms-pi-virid.vercel.app/:path*"
+    },
+    {
+      "source": "/accounting/:path*",
+      "destination": "https://accounting-nu-lovat.vercel.app/:path*"
+    },
+    {
+      "source": "/ecommerce/:path*",
+      "destination": "https://ecommerce-ebon-six-87.vercel.app/:path*"
+    },
+    {
       "source": "/:path*",
       "destination": "/index.html"
     }
