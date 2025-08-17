@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useUser } from '@/contexts/UserContext';
@@ -37,58 +36,57 @@ const Dashboard = () => {
 
   const allTools = {
     hr: [
-      { id: 'odoo', title: 'Odoo ERP', icon: Users, color: 'text-blue-600', visitUrl: 'https://odoo-five.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
-      { id: 'automation', title: 'Automation (n8n)', icon: Settings, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+      { id: 'hrms', title: 'HRMS System', icon: Users, color: 'text-blue-600', visitUrl: '/hrms' },
+      { id: 'odoo', title: 'Odoo ERP', icon: Settings, color: 'text-green-600', visitUrl: '/odoo' },
+      { id: 'typing-practice', title: 'Typing Skills', icon: Keyboard, color: 'text-gray-600', visitUrl: '/typing' },
+      { id: 'excel', title: 'Excel for HR', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     accounting: [
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'powerbi', title: 'Power BI', icon: BarChart3, color: 'text-blue-600', visitUrl: 'https://powerbi-livid.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
-      { id: 'automation', title: 'Automation (n8n)', icon: Settings, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+      { id: 'accounting', title: 'Accounting System', icon: Calculator, color: 'text-blue-600', visitUrl: '/accounting' },
+      { id: 'excel', title: 'Financial Analysis', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' },
+      { id: 'powerbi', title: 'Financial Reporting', icon: BarChart3, color: 'text-purple-600', visitUrl: '/powerbi' }
     ],
     sales: [
-      { id: 'pos', title: 'Point of Sales (POS)', icon: CreditCard, color: 'text-blue-600', visitUrl: 'https://pos-eight-blush.vercel.app/' },
-      { id: 'ghl-crm', title: 'GHL CRM', icon: Users, color: 'text-green-600', visitUrl: 'https://ghl-crm.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+      { id: 'pos', title: 'Point of Sales (POS)', icon: CreditCard, color: 'text-blue-600', visitUrl: '/pos' },
+      { id: 'ghl-crm', title: 'Sales CRM (GHL)', icon: Users, color: 'text-green-600', visitUrl: '/ghl-crm' },
+      { id: 'ecommerce', title: 'E-Commerce Platform', icon: ShoppingCart, color: 'text-purple-600', visitUrl: '/ecommerce' },
+      { id: 'excel', title: 'Sales Analytics', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     marketing: [
-      { id: 'email-marketing', title: 'Email Marketing Platform', icon: Megaphone, color: 'text-blue-600', visitUrl: 'https://email-marketing-eta-six.vercel.app/' },
-      { id: 'powerbi', title: 'Power BI', icon: BarChart3, color: 'text-purple-600', visitUrl: 'https://powerbi-livid.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+      { id: 'email-marketing', title: 'Email Marketing', icon: Megaphone, color: 'text-blue-600', visitUrl: '/email-marketing' },
+      { id: 'zap', title: 'Marketing Automation', icon: Target, color: 'text-green-600', visitUrl: '/zap' },
+      { id: 'powerbi', title: 'Campaign Analytics', icon: BarChart3, color: 'text-purple-600', visitUrl: '/powerbi' },
+      { id: 'excel', title: 'Marketing Data', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     operations: [
-      { id: 'bpm', title: 'Business Process Management', icon: Settings, color: 'text-blue-600', visitUrl: 'https://bpm-tau.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
-      { id: 'automation', title: 'Automation (n8n)', icon: Package, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+      { id: 'bpm', title: 'Business Process Mgmt', icon: Settings, color: 'text-blue-600', visitUrl: '/bpm' },
+      { id: 'project-management', title: 'Project Management', icon: FolderOpen, color: 'text-green-600', visitUrl: '/project-management' },
+      { id: 'automation', title: 'Process Automation', icon: Package, color: 'text-purple-600', visitUrl: '/automation' },
+      { id: 'excel', title: 'Operations Data', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     management: [
-      { id: 'portfolio', title: 'Portfolio Management', icon: BarChart3, color: 'text-blue-600', visitUrl: 'https://nexux-app-delta.vercel.app/' },
-      { id: 'roadmap', title: 'Product Roadmap', icon: Target, color: 'text-green-600', visitUrl: 'https://roadmap-seven-xi.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+      { id: 'nexus', title: 'Portfolio Mgmt (Nexus)', icon: BarChart3, color: 'text-blue-600', visitUrl: '/nexus' },
+      { id: 'roadmap', title: 'Strategic Roadmap', icon: Target, color: 'text-green-600', visitUrl: '/roadmap' },
+      { id: 'project-management', title: 'Project Oversight', icon: FolderOpen, color: 'text-purple-600', visitUrl: '/project-management' },
+      { id: 'powerbi', title: 'Executive Dashboard', icon: BarChart3, color: 'text-indigo-600', visitUrl: '/powerbi' }
     ],
     product: [
-      { id: 'roadmap-app', title: 'Product Roadmap', icon: Target, color: 'text-blue-600', visitUrl: 'https://roadmap-seven-xi.vercel.app/' },
-      { id: 'powerbi', title: 'Power BI', icon: BarChart3, color: 'text-green-600', visitUrl: 'https://powerbi-livid.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+      { id: 'roadmap-app', title: 'Product Roadmap', icon: Target, color: 'text-blue-600', visitUrl: '/roadmap' },
+      { id: 'project-management', title: 'Product Development', icon: FolderOpen, color: 'text-green-600', visitUrl: '/project-management' },
+      { id: 'powerbi', title: 'Product Analytics', icon: BarChart3, color: 'text-purple-600', visitUrl: '/powerbi' },
+      { id: 'excel', title: 'Product Metrics', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     education: [
-      { id: 'student-consulting-crm', title: 'Student Consulting CRM', icon: Users, color: 'text-blue-600', visitUrl: 'https://study-pathways.vercel.app/' },
-      { id: 'appointment-booking', title: 'Appointment Booking', icon: GraduationCap, color: 'text-green-600', visitUrl: 'https://appointment-booking-bice.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' }
+      { id: 'study-pathways', title: 'Student CRM', icon: Users, color: 'text-blue-600', visitUrl: '/study-pathways' },
+      { id: 'appointment-booking', title: 'Appointment System', icon: GraduationCap, color: 'text-green-600', visitUrl: '/appointment-booking' },
+      { id: 'application-tracking', title: 'Application Tracker', icon: FileText, color: 'text-purple-600', visitUrl: '/application-tracking' },
+      { id: 'excel', title: 'Student Records', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ],
     customer: [
-      { id: 'ghl-crm', title: 'GHL CRM', icon: Headphones, color: 'text-blue-600', visitUrl: 'https://ghl-crm.vercel.app/' },
-      { id: 'excel', title: 'Excel', icon: FileText, color: 'text-orange-600', visitUrl: 'https://excel-ashen-ten.vercel.app/' },
-      { id: 'typing-practice', title: 'Typing Practice', icon: Keyboard, color: 'text-gray-600', visitUrl: 'https://typing-theta-rose.vercel.app/' },
-      { id: 'automation', title: 'Automation (n8n)', icon: MessageSquare, color: 'text-purple-600', visitUrl: 'https://automation-puce.vercel.app/' }
+      { id: 'ghl-crm', title: 'Customer CRM', icon: Headphones, color: 'text-blue-600', visitUrl: '/ghl-crm' },
+      { id: 'automation', title: 'Support Automation', icon: MessageSquare, color: 'text-purple-600', visitUrl: '/automation' },
+      { id: 'typing-practice', title: 'Response Efficiency', icon: Keyboard, color: 'text-gray-600', visitUrl: '/typing' },
+      { id: 'excel', title: 'Service Analytics', icon: FileText, color: 'text-orange-600', visitUrl: '/excel' }
     ]
   };
 
@@ -287,8 +285,6 @@ const Dashboard = () => {
                             </div>
                             <a
                               href={tool.visitUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
                               className="text-xs bg-skill-blue text-white px-2 py-1 rounded hover:bg-skill-blue/80"
                             >
                               {t("Visit", "ভিজিট")}
