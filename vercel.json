@@ -77,6 +77,10 @@
       "destination": "https://ecommerce-ebon-six-87.vercel.app/:path*"
     },
     {
+      "source": "/document-management/:path*",
+      "destination": "https://document-management-ochre.vercel.app/:path*"
+    },
+    {
       "source": "/:path*",
       "destination": "/index.html"
     }
