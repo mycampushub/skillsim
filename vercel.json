@@ -58,11 +58,11 @@
     },
     {
       "source": "/automation/:path*",
-      "destination": "https://automation-puce.vercel.app/:path*"
+      "destination": "https://automation-five-pi.vercel.app/:path*"
     },
     {
       "source": "/typing/:path*",
-      "destination": "https://typing-theta-rose.vercel.app/:path*"
+      "destination": "https://typing-kappa-gold.vercel.app/:path*"
     },
     {
       "source": "/hrms/:path*",
@@ -70,11 +70,11 @@
     },
     {
       "source": "/accounting/:path*",
-      "destination": "https://accounting-nu-lovat.vercel.app/:path*"
+      "destination": "https://accounting-bwvq.vercel.app/:path*"
     },
     {
       "source": "/ecommerce/:path*",
-      "destination": "https://ecommerce-ebon-six-87.vercel.app/:path*"
+      "destination": "https://ecommerce-lac-five.vercel.app/:path*"
     },
     {
       "source": "/document-management/:path*",
