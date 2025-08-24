@@ -21,6 +21,14 @@
       "destination": "https://nexux-app-delta.vercel.app/:path*"
     },
     {
+      "source": "/tax-submit/:path*",
+      "destination": "https://tax-submit.vercel.app/:path*"
+    },
+    {
+      "source": "/erp/:path*",
+      "destination": "https://erp-omega-blush.vercel.app/:path*"
+    },
+    {
       "source": "/odoo/:path*",
       "destination": "https://odoo-five.vercel.app/:path*"
     },
@@ -79,6 +87,10 @@
     {
       "source": "/document-management/:path*",
       "destination": "https://document-management-ochre.vercel.app/:path*"
+    },
+    {
+      "source": "/business-supply/:path*",
+      "destination": "https://business-supply.vercel.app/:path*"
     },
     {
       "source": "/:path*",
