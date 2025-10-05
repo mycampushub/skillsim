@@ -72,25 +72,32 @@ export const adminHelpers = {
 
   checkAdminRole: async (userId: string) => {
     try {
+      // First check user table for admin role
+      const { data: userData, error: userError } = await supabase
+        .from('users')
+        .select('role')
+        .eq('id', userId)
+        .single()
+      
+      if (!userError && userData && userData.role === 'admin') {
+        return { isAdmin: true }
+      }
+      
+      // Then check admin_users table for extended admin info
       const { data, error } = await supabase
         .from('admin_users')
-        .select('role')
+        .select('role, permissions')
         .eq('user_id', userId)
         .single()
       
       if (error || !data) {
-        // Check if user metadata has admin role
-        const { data: { user } } = await supabase.auth.getUser()
-        const isAdmin = user?.user_metadata?.role === 'admin' || user?.email === 'admin@careertodo.com'
-        return { isAdmin: isAdmin || false }
+        return { isAdmin: false }
       }
       
-      return { isAdmin: data.role === 'admin' }
+      return { isAdmin: data.role === 'admin', permissions: data.permissions }
     } catch (err) {
-      // Fallback to email check
-      const { data: { user } } = await supabase.auth.getUser()
-      const isAdmin = user?.email === 'admin@careertodo.com'
-      return { isAdmin: isAdmin || false }
+      console.error('Error checking admin role:', err)
+      return { isAdmin: false }
     }
   }
 }
