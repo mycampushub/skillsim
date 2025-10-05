@@ -13,9 +13,6 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { AdminLoginForm } from "@/components/auth/AdminLoginForm";
 import NotFound from "@/pages/not-found";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-import DebugSupabase from "@/components/DebugSupabase";
-import SupabaseTest from "@/components/SupabaseTest";
-import DetailedDebug from "@/components/DetailedDebug";
 
 // Admin Login Page Component
 const AdminLoginPage = () => {
@@ -64,14 +61,7 @@ function Router() {
 }
 
 function App() {
-  return (
-    <div className="min-h-screen overflow-x-hidden">
-      <DetailedDebug />
-      <DebugSupabase />
-      <SupabaseTest />
-      <Router />
-    </div>
-  );
+  return <div className="min-h-screen overflow-x-hidden"><Router /></div>;
 }
 
 export default App;
