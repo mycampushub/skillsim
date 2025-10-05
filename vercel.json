@@ -93,6 +93,22 @@
       "destination": "https://business-supply.vercel.app/:path*"
     },
     {
+      "source": "/af-workflow/:path*",
+      "destination": "https://af-workflow.vercel.app/:path*"
+    },
+    {
+      "source": "/hr-workflow/:path*",
+      "destination": "https://hr-workflow-gamma.vercel.app/:path*"
+    },
+    {
+      "source": "/operations-tasks/:path*",
+      "destination": "https://operations-tasks.vercel.app/:path*"
+    },
+    {
+      "source": "/sales-workflow/:path*",
+      "destination": "https://sales-workflow.vercel.app/:path*"
+    },
+    {
       "source": "/:path*",
       "destination": "/index.html"
     }
