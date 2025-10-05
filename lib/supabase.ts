@@ -1,51 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Get environment variables
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://demo.supabase.co'
+const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || 'demo-key'
 
-// Development mode check
-const isDevelopment = import.meta.env.DEV
-
-// For development, provide a mock client if no real credentials are available
-if (isDevelopment && (!supabaseUrl || !supabaseAnonKey || supabaseUrl === 'https://your-project-id.supabase.co')) {
-  console.warn(
-    '⚠️ Development Mode: Using mock Supabase client.\n' +
-    'To connect to real Supabase, update your .env file with actual credentials.\n' +
-    'See .env.example for instructions.'
-  )
-}
-
-// Create client (real or mock)
-export const supabase = createClient(
-  supabaseUrl || 'https://mock.supabase.co', 
-  supabaseAnonKey || 'mock-key', 
-  {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: true
-    }
-  }
-)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 // Auth helpers
 export const authHelpers = {
   signUp: async (email: string, password: string, metadata?: any) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development
-      return {
-        data: {
-          user: {
-            id: 'mock-user-id',
-            email,
-            user_metadata: metadata,
-            created_at: new Date().toISOString()
-          }
-        },
-        error: null
-      }
-    }
     return await supabase.auth.signUp({
       email,
       password,
@@ -56,28 +18,6 @@ export const authHelpers = {
   },
 
   signIn: async (email: string, password: string) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development
-      return {
-        data: {
-          user: {
-            id: 'mock-user-id',
-            email,
-            created_at: new Date().toISOString()
-          },
-          session: {
-            access_token: 'mock-token',
-            refresh_token: 'mock-refresh',
-            expires_in: 3600,
-            user: {
-              id: 'mock-user-id',
-              email
-            }
-          }
-        },
-        error: null
-      }
-    }
     return await supabase.auth.signInWithPassword({
       email,
       password
@@ -85,23 +25,14 @@ export const authHelpers = {
   },
 
   signOut: async () => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      return { error: null }
-    }
     return await supabase.auth.signOut()
   },
 
   resetPassword: async (email: string) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      return { error: null }
-    }
     return await supabase.auth.resetPasswordForEmail(email)
   },
 
   getCurrentUser: async () => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      return { user: null }
-    }
     const { data: { user } } = await supabase.auth.getUser()
     return { user }
   }
@@ -110,19 +41,6 @@ export const authHelpers = {
 // Admin helpers
 export const adminHelpers = {
   createAdminUser: async (email: string, password: string, name: string, phone: string) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development
-      return {
-        user: {
-          id: 'mock-admin-id',
-          email,
-          user_metadata: { name, phone, role: 'admin' },
-          created_at: new Date().toISOString()
-        },
-        error: null
-      }
-    }
-    
     // First create the user
     const { data, error } = await authHelpers.signUp(email, password, { name, phone, role: 'admin' })
     
@@ -153,11 +71,6 @@ export const adminHelpers = {
   },
 
   checkAdminRole: async (userId: string) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development - treat all users as non-admin except mock admin
-      return { isAdmin: userId === 'mock-admin-id' }
-    }
-    
     try {
       // First check user table for admin role
       const { data: userData, error: userError } = await supabase
@@ -193,11 +106,6 @@ export const adminHelpers = {
 export const dbHelpers = {
   // User profiles
   createUserProfile: async (userId: string, profile: any) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development
-      return { data: { id: userId, ...profile }, error: null }
-    }
-    
     try {
       return await supabase
         .from('users')
@@ -209,20 +117,6 @@ export const dbHelpers = {
   },
 
   getUserProfile: async (userId: string) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development
-      return { 
-        data: {
-          id: userId,
-          name: 'Mock User',
-          email: 'mock@example.com',
-          role: 'user',
-          created_at: new Date().toISOString()
-        }, 
-        error: null 
-      }
-    }
-    
     try {
       return await supabase
         .from('users')
@@ -236,11 +130,6 @@ export const dbHelpers = {
   },
 
   updateUserProfile: async (userId: string, updates: any) => {
-    if (isDevelopment && (!supabaseUrl || supabaseUrl === 'https://your-project-id.supabase.co')) {
-      // Mock response for development
-      return { data: { id: userId, ...updates }, error: null }
-    }
-    
     try {
       return await supabase
         .from('users')

@@ -70,6 +70,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
+    // Check if Supabase is properly configured
+    if (!supabase) {
+      console.warn('Supabase not configured - running in demo mode');
+      setSupabaseError(true);
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     const getInitialSession = async () => {
       try {
@@ -77,7 +85,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(session);
         setUser(session?.user ?? null);
       } catch (error) {
-        console.error('Supabase auth error:', error);
+        console.warn('Supabase auth error - running in demo mode:', error);
         setSupabaseError(true);
       } finally {
         setLoading(false);
@@ -98,7 +106,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       return () => subscription.unsubscribe();
     } catch (error) {
-      console.error('Supabase subscription error:', error);
+      console.warn('Supabase subscription error - running in demo mode:', error);
       setSupabaseError(true);
     }
   }, []);
@@ -136,43 +144,33 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   */
 
   const signUp = async (email: string, password: string, metadata?: any) => {
-    const result = await authHelpers.signUp(email, password, metadata);
-    
-    // Create user profile in database after successful auth
-    if (result.data?.user && !result.error) {
-      try {
-        await dbHelpers.createUserProfile(result.data.user.id, {
-          name: metadata?.name || '',
-          email,
-          phone: metadata?.phone || '',
-          is_paid: false,
-          payment_status: 'pending',
-          role: metadata?.role || 'user',
-          referral_code: metadata?.referral_code || null
-        });
-      } catch (profileError) {
-        console.warn('User profile creation failed:', profileError);
-      }
+    if (supabaseError) {
+      return { error: new Error('Demo mode - authentication not available') };
     }
-    
+    const result = await authHelpers.signUp(email, password, metadata);
     return { error: result.error, data: result.data };
   };
 
   const signIn = async (email: string, password: string) => {
+    if (supabaseError) {
+      return { error: new Error('Demo mode - authentication not available') };
+    }
     const result = await authHelpers.signIn(email, password);
     return { error: result.error, data: result.data };
   };
 
   const signOut = async () => {
-    const { error } = await authHelpers.signOut();
-    if (!error) {
-      setUserProfile(null);
-      setIsAdmin(false);
+    if (supabaseError) {
+      return { error: new Error('Demo mode - authentication not available') };
     }
+    const { error } = await authHelpers.signOut();
     return { error };
   };
 
   const resetPassword = async (email: string) => {
+    if (supabaseError) {
+      return { error: new Error('Demo mode - authentication not available') };
+    }
     const { error } = await authHelpers.resetPassword(email);
     return { error };
   };
