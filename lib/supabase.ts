@@ -1,7 +1,19 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://demo.supabase.co'
-const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || 'demo-key'
+// For debugging - remove this after fixing environment variables
+const DEBUG_MODE = true;
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://demo.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'demo-key';
+
+// Debug logging
+if (DEBUG_MODE) {
+  console.log('🔍 Supabase Debug:');
+  console.log('URL from env:', import.meta.env.VITE_SUPABASE_URL);
+  console.log('Key exists:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
+  console.log('Final URL:', supabaseUrl);
+  console.log('Using demo mode:', supabaseUrl === 'https://demo.supabase.co');
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
