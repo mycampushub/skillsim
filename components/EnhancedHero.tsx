@@ -44,14 +44,13 @@ export function EnhancedHero() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(59,130,246,0.15),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(125,211,252,0.08),transparent_70%)]" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12 mt-8 sm:mt-10 md:mt-12 lg:pb-12 pb-2">
-        <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center min-h-[600px]">
-          {/* Left side - 50% for heading content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12 mt-8 sm:mt-10 md:mt-12">
+        <div className="grid lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-center lg:text-left mb-0"
+            className="text-center lg:text-left"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -98,7 +97,7 @@ export function EnhancedHero() {
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start mb-0">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center lg:justify-start">
               <Link href="/signup">
                 <Button 
                   size="lg" 
@@ -123,19 +122,19 @@ export function EnhancedHero() {
             </div>
           </motion.div>
 
-          {/* Right side - 50% for rolling cards */}
-          <div className="relative lg:h-[600px] hidden lg:block">
+          {/* Rolling cards - positioned below CTA on mobile, properly positioned on desktop */}
+          <div className="lg:absolute lg:right-4 lg:top-1/2 lg:-translate-y-1/2 lg:w-96 lg:h-96 hidden lg:block">
             <div className="relative w-full h-full">
               <RoleCardsMarquee />
             </div>
           </div>
         </div>
 
-        {/* Rolling cards for mobile/tablet - positioned right after CTA button */}
-        <div className="lg:hidden -mt-12">
-          <div className="relative w-full h-[520px] sm:h-[520px]">
-            {/* Mobile shadow positioned very close to CTA button */}
-            <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-b from-white via-white/80 to-transparent z-10 pointer-events-none" />
+        {/* Rolling cards for mobile/tablet - positioned below CTA button */}
+        <div className="lg:hidden mt-15 sm:mt-20 md:mt-24">
+          <div className="relative w-full h-[300px] sm:h-[350px] md:h-[400px]">
+            {/* Mobile shadow only at top - starts right after black Reality Check section */}
+            <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-white via-white/70 to-transparent z-10 pointer-events-none" />
             <RoleCardsMarquee />
           </div>
         </div>

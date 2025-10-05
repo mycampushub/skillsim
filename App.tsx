@@ -13,6 +13,7 @@ import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { AdminLoginForm } from "@/components/auth/AdminLoginForm";
 import NotFound from "@/pages/not-found";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Admin Login Page Component
 const AdminLoginPage = () => {
@@ -61,7 +62,13 @@ function Router() {
 }
 
 function App() {
-  return <div className="min-h-screen overflow-x-hidden"><Router /></div>;
+  return (
+    <ErrorBoundary>
+      <div className="min-h-screen overflow-x-hidden">
+        <Router />
+      </div>
+    </ErrorBoundary>
+  );
 }
 
 export default App;

@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(process.cwd(), "."),
-      "@assets": path.resolve(process.cwd(), "public"),
+      "@": path.resolve(__dirname, "."),
+      "@assets": path.resolve(__dirname, "./public"),
     },
   },
   root: process.cwd(),

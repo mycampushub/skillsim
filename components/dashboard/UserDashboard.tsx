@@ -14,7 +14,8 @@ import {
   User,
   Copy,
   LogOut,
-  Crown
+  Crown,
+  MessageSquare
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -36,15 +37,22 @@ export const UserDashboard: React.FC = () => {
     window.location.href = '/';
   };
 
-  const handleLaunchTool = (toolName: string, url: string, departmentId: string) => {
-    // Open the tool in a new tab instead of redirecting to payment
+  const handleLaunchTool = (toolName: string, departmentId: string) => {
+    if (!user?.is_paid) {
+      window.location.href = '/payment';
+      return;
+    }
+    
+    // Mock tool launching logic
     console.log(`Launching ${toolName} from ${departmentId}`);
     
-    // Track tool usage (you can add analytics here)
-    console.log(`Tool launched: ${toolName} - ${url}`);
+    // Here you would typically:
+    // 1. Track tool usage in analytics
+    // 2. Open the tool in a modal or new page
+    // 3. Update user progress
     
-    // Open the tool in a new tab
-    window.open(url, '_blank', 'noopener,noreferrer');
+    // For now, let's show an alert
+    alert(`Launching ${toolName}...\n\nThis would open the ${toolName} simulation in a real implementation.`);
   };
 
   const mockDepartments = [
@@ -54,55 +62,7 @@ export const UserDashboard: React.FC = () => {
       description: 'Master recruitment, employee management, and organizational development',
       icon: Users,
       color: 'bg-blue-500',
-      specializedTool: {
-        name: 'HRMS System',
-        url: 'https://hrms-pi-virid.vercel.app/',
-        description: 'Complete Human Resource Management System'
-      },
-      tools: [
-        { name: 'HR Workflow Management', url: 'https://hr-workflow-gamma.vercel.app/', description: 'Streamline HR processes' },
-        { name: 'Application Tracking', url: 'https://applicatrion-tracking.vercel.app/', description: 'Track job applications' },
-        { name: 'Email Marketing', url: 'https://email-marketing-theta-five.vercel.app/', description: 'HR email campaigns' },
-        { name: 'Study Pathways', url: 'https://study-pathways.vercel.app/', description: 'Employee development paths' },
-        { name: 'Typing Practice', url: 'https://typing-kappa-gold.vercel.app/', description: 'Improve typing skills' }
-      ]
-    },
-    {
-      id: 'finance',
-      name: 'Accounting & Finance',
-      description: 'Learn financial analysis, budgeting, and strategic planning',
-      icon: Award,
-      color: 'bg-yellow-500',
-      specializedTool: {
-        name: 'Accounting System',
-        url: 'https://accounting-bwvq.vercel.app/',
-        description: 'Professional accounting and bookkeeping'
-      },
-      tools: [
-        { name: 'Tax Submission', url: 'https://tax-submit.vercel.app/', description: 'File taxes electronically' },
-        { name: 'Excel Practice', url: 'https://excel-ashen-ten.vercel.app/', description: 'Advanced Excel skills' },
-        { name: 'Power BI Analytics', url: 'https://powerbi-livid.vercel.app/', description: 'Business intelligence' },
-        { name: 'Business Supply', url: 'https://business-supply.vercel.app/', description: 'Supply chain finance' }
-      ]
-    },
-    {
-      id: 'operations',
-      name: 'Operations',
-      description: 'Optimize processes and improve operational efficiency',
-      icon: Settings,
-      color: 'bg-purple-500',
-      specializedTool: {
-        name: 'ERP System',
-        url: 'https://erp-omega-blush.vercel.app/',
-        description: 'Enterprise Resource Planning'
-      },
-      tools: [
-        { name: 'Odoo ERP', url: 'https://odoo-five.vercel.app/', description: 'Complete business management' },
-        { name: 'Operations Tasks', url: 'https://operations-tasks.vercel.app/', description: 'Task management' },
-        { name: 'BPM System', url: 'https://bpm-tau.vercel.app/', description: 'Business Process Management' },
-        { name: 'Document Management', url: 'https://document-management-ochre.vercel.app/', description: 'Digital document handling' },
-        { name: 'AF Workflow', url: 'https://af-workflow.vercel.app/', description: 'Automated workflows' }
-      ]
+      tools: ['Interview Simulator', 'Performance Review', 'Team Builder', 'Policy Creator']
     },
     {
       id: 'sales',
@@ -110,35 +70,39 @@ export const UserDashboard: React.FC = () => {
       description: 'Develop persuasive communication and strategic selling skills',
       icon: TrendingUp,
       color: 'bg-green-500',
-      specializedTool: {
-        name: 'CRM System',
-        url: 'https://ghl-crm.vercel.app/',
-        description: 'Customer Relationship Management'
-      },
-      tools: [
-        { name: 'Sales Workflow', url: 'https://sales-workflow.vercel.app/', description: 'Sales process automation' },
-        { name: 'E-commerce Platform', url: 'https://ecommerce-lac-five.vercel.app/', description: 'Online store management' },
-        { name: 'Appointment Booking', url: 'https://appointment-booking-steel.vercel.app/', description: 'Schedule appointments' },
-        { name: 'POS System', url: 'https://pos-eight-blush.vercel.app/', description: 'Point of Sale' }
-      ]
+      tools: ['Sales Call Simulator', 'Email Marketing', 'CRM Practice', 'Presentation Skills']
     },
     {
-      id: 'common',
-      name: 'Essential Tools',
-      description: 'Common tools everyone should know for professional success',
+      id: 'finance',
+      name: 'Accounting & Finance',
+      description: 'Learn financial analysis, budgeting, and strategic planning',
+      icon: Award,
+      color: 'bg-yellow-500',
+      tools: ['Financial Calculator', 'Budget Planner', 'Investment Analysis', 'Risk Assessment']
+    },
+    {
+      id: 'operations',
+      name: 'Operations',
+      description: 'Optimize processes and improve operational efficiency',
+      icon: Settings,
+      color: 'bg-purple-500',
+      tools: ['Process Mapper', 'Quality Control', 'Supply Chain', 'Project Management']
+    },
+    {
+      id: 'customer_service',
+      name: 'Customer Service',
+      description: 'Build exceptional customer support and communication skills',
+      icon: MessageSquare,
+      color: 'bg-pink-500',
+      tools: ['Call Center Simulator', 'Email Response', 'Conflict Resolution', 'Customer Retention']
+    },
+    {
+      id: 'leadership',
+      name: 'Leadership',
+      description: 'Develop strategic thinking and team management capabilities',
       icon: Crown,
       color: 'bg-indigo-500',
-      specializedTool: {
-        name: 'Project Management',
-        url: 'https://project-management-chi-eight.vercel.app/',
-        description: 'Professional project management'
-      },
-      tools: [
-        { name: 'Zap Automation', url: 'https://zap-smoky-one.vercel.app/', description: 'Workflow automation' },
-        { name: 'Career Roadmap', url: 'https://roadmap-seven-xi.vercel.app/', description: 'Career planning tool' },
-        { name: 'Nexux App', url: 'https://nexux-app-delta.vercel.app/', description: 'Business integration' },
-        { name: 'Automation Tools', url: 'https://automation-five-pi.vercel.app/', description: 'Business automation' }
-      ]
+      tools: ['Team Leadership', 'Strategic Planning', 'Decision Making', 'Change Management']
     }
   ];
 
@@ -185,10 +149,10 @@ export const UserDashboard: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">
-                  Welcome to CareerSim
+                  Welcome to SkillSim
                 </h1>
                 <p className="text-gray-600 mt-2">
-                  Choose a department to start your professional simulation experience with real-world tools
+                  Choose a department to start your simulation experience
                 </p>
               </div>
               <div className="flex items-center space-x-4">
@@ -215,68 +179,38 @@ export const UserDashboard: React.FC = () => {
             </TabsList>
 
             <TabsContent value="departments" className="space-y-8">
-              {/* Department Cards - Custom Sizing */}
-              <div className="flex flex-wrap gap-4 justify-center">
+              {/* Department Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mockDepartments.map((department) => {
                   const Icon = department.icon;
                   return (
-                    <Card key={department.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md w-[550px] max-w-full">
-                      <CardHeader className="pb-3">
-                        <div className="flex items-center space-x-2">
-                          <div className={`p-2 rounded-lg ${department.color} text-white`}>
-                            <Icon className="h-5 w-5" />
+                    <Card key={department.id} className="group hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                      <CardHeader className="pb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className={`p-3 rounded-lg ${department.color} text-white`}>
+                            <Icon className="h-6 w-6" />
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <CardTitle className="text-sm leading-tight">{department.name}</CardTitle>
+                          <div>
+                            <CardTitle className="text-lg">{department.name}</CardTitle>
                           </div>
                         </div>
-                        <CardDescription className="text-xs mt-2 line-clamp-2">
+                        <CardDescription className="text-sm mt-3">
                           {department.description}
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="pt-0">
                         <div className="space-y-3">
-                          {/* Specialized Tool - Featured */}
                           <div>
-                            <p className="text-xs font-semibold text-gray-700 mb-2 flex items-center">
-                              <span className="mr-1">⭐</span> Featured Tool:
-                            </p>
-                            <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-3">
-                              <div className="flex items-center justify-between">
-                                <div className="flex-1 min-w-0">
-                                  <h4 className="text-sm font-semibold text-blue-900 truncate">
-                                    {department.specializedTool.name}
-                                  </h4>
-                                  <p className="text-xs text-blue-700 mt-1">
-                                    {department.specializedTool.description}
-                                  </p>
-                                </div>
-                                <Button 
-                                  size="sm" 
-                                  className="ml-2 bg-blue-600 hover:bg-blue-700 text-white text-xs h-7 px-3 flex-shrink-0"
-                                  onClick={() => handleLaunchTool(department.specializedTool.name, department.specializedTool.url, department.id)}
-                                >
-                                  Launch
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Other Tools */}
-                          <div>
-                            <p className="text-xs font-medium text-gray-700 mb-1">Additional Tools:</p>
-                            <div className="space-y-1 max-h-32 overflow-y-auto">
+                            <p className="text-sm font-medium text-gray-700 mb-2">Available Tools:</p>
+                            <div className="space-y-2">
                               {department.tools.map((tool, index) => (
-                                <div key={index} className="flex items-center justify-between p-1.5 bg-gray-50 rounded hover:bg-gray-100 transition-colors">
-                                  <div className="flex-1 min-w-0 mr-2">
-                                    <span className="text-xs text-gray-700 truncate block">{tool.name}</span>
-                                    <span className="text-xs text-gray-500 truncate block">{tool.description}</span>
-                                  </div>
+                                <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded-lg">
+                                  <span className="text-sm text-gray-700">{tool}</span>
                                   <Button 
                                     size="sm" 
                                     variant="outline"
-                                    className="text-xs h-6 px-2 flex-shrink-0"
-                                    onClick={() => handleLaunchTool(tool.name, tool.url, department.id)}
+                                    className="text-xs h-7 px-3"
+                                    onClick={() => handleLaunchTool(tool, department.id)}
                                   >
                                     Visit
                                   </Button>

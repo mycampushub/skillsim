@@ -7,6 +7,7 @@ import { ThemeProvider } from './components/ThemeProvider';
 import { LanguageProvider } from './components/LanguageProvider';
 import { TooltipProvider } from './components/ui/tooltip';
 import { Toaster } from './components/ui/toaster';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import App from "./App";
 import "./index.css";
 import { queryClient } from './lib/queryClient';
@@ -26,18 +27,20 @@ if (typeof window !== 'undefined') {
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="light" storageKey="career-todo-theme">
-        <LanguageProvider>
-          <AuthProvider>
-            <TooltipProvider>
-              <App />
-              <Toaster />
-            </TooltipProvider>
-          </AuthProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="light" storageKey="career-todo-theme">
+          <LanguageProvider>
+            <AuthProvider>
+              <TooltipProvider>
+                <App />
+                <Toaster />
+              </TooltipProvider>
+            </AuthProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

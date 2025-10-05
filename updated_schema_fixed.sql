@@ -80,7 +80,7 @@ CREATE INDEX IF NOT EXISTS idx_devices_device_id ON devices(device_id);
 CREATE INDEX IF NOT EXISTS idx_user_sessions_user_id ON user_sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_user_sessions_token ON user_sessions(token);
 
--- Function to update updated_at timestamp
+-- Function to update updated_at timestamp (create if not exists)
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -89,7 +89,13 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
--- Triggers to automatically update updated_at
+-- Drop triggers if they exist, then recreate them
+DROP TRIGGER IF EXISTS update_users_updated_at ON users;
+DROP TRIGGER IF EXISTS update_admin_users_updated_at ON admin_users;
+DROP TRIGGER IF EXISTS update_payments_updated_at ON payments;
+DROP TRIGGER IF EXISTS update_devices_updated_at ON devices;
+
+-- Create triggers
 CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
@@ -108,6 +114,19 @@ ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE devices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE user_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admin_users ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist
+DROP POLICY IF EXISTS "Users can view own profile" ON users;
+DROP POLICY IF EXISTS "Admins can view all users" ON users;
+DROP POLICY IF EXISTS "Users can update own profile" ON users;
+DROP POLICY IF EXISTS "Admins can update all users" ON users;
+DROP POLICY IF EXISTS "Admins can manage admin users" ON admin_users;
+DROP POLICY IF EXISTS "Users can view own payments" ON payments;
+DROP POLICY IF EXISTS "Admins can view all payments" ON payments;
+DROP POLICY IF EXISTS "Users can insert own payments" ON payments;
+DROP POLICY IF EXISTS "Users can manage own devices" ON devices;
+DROP POLICY IF EXISTS "Admins can view all devices" ON devices;
+DROP POLICY IF EXISTS "Users can manage own sessions" ON user_sessions;
 
 -- Users can only read/write their own data, except admins
 CREATE POLICY "Users can view own profile" ON users
