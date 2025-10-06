@@ -36,15 +36,15 @@ export const UserDashboard: React.FC = () => {
     window.location.href = '/';
   };
 
-  const handleLaunchTool = (toolName: string, url: string, departmentId: string) => {
-    // Open the tool in a new tab instead of redirecting to payment
+  const handleLaunchTool = (toolName: string, path: string, departmentId: string) => {
+    // Navigate to the local path instead of opening external URL
     console.log(`Launching ${toolName} from ${departmentId}`);
     
     // Track tool usage (you can add analytics here)
-    console.log(`Tool launched: ${toolName} - ${url}`);
+    console.log(`Tool launched: ${toolName} - ${path}`);
     
-    // Open the tool in a new tab
-    window.open(url, '_blank', 'noopener,noreferrer');
+    // Navigate to the local path (this will use the vercel.json rewrite)
+    window.location.href = path;
   };
 
   const mockDepartments = [
@@ -56,15 +56,15 @@ export const UserDashboard: React.FC = () => {
       color: 'bg-blue-500',
       specializedTool: {
         name: 'HRMS System',
-        url: 'https://hrms-pi-virid.vercel.app/',
+        url: '/hrms',
         description: 'Complete Human Resource Management System'
       },
       tools: [
-        { name: 'HR Workflow Management', url: 'https://hr-workflow-gamma.vercel.app/', description: 'Streamline HR processes' },
-        { name: 'Application Tracking', url: 'https://applicatrion-tracking.vercel.app/', description: 'Track job applications' },
-        { name: 'Email Marketing', url: 'https://email-marketing-theta-five.vercel.app/', description: 'HR email campaigns' },
-        { name: 'Study Pathways', url: 'https://study-pathways.vercel.app/', description: 'Employee development paths' },
-        { name: 'Typing Practice', url: 'https://typing-kappa-gold.vercel.app/', description: 'Improve typing skills' }
+        { name: 'HR Workflow Management', url: '/hr-workflow', description: 'Streamline HR processes' },
+        { name: 'Application Tracking', url: '/application-tracking', description: 'Track job applications' },
+        { name: 'Email Marketing', url: '/email-marketing', description: 'HR email campaigns' },
+        { name: 'Study Pathways', url: '/study-pathways', description: 'Employee development paths' },
+        { name: 'Typing Practice', url: '/typing', description: 'Improve typing skills' }
       ]
     },
     {
@@ -75,14 +75,14 @@ export const UserDashboard: React.FC = () => {
       color: 'bg-yellow-500',
       specializedTool: {
         name: 'Accounting System',
-        url: 'https://accounting-bwvq.vercel.app/',
+        url: '/accounting',
         description: 'Professional accounting and bookkeeping'
       },
       tools: [
-        { name: 'Tax Submission', url: 'https://tax-submit.vercel.app/', description: 'File taxes electronically' },
-        { name: 'Excel Practice', url: 'https://excel-ashen-ten.vercel.app/', description: 'Advanced Excel skills' },
-        { name: 'Power BI Analytics', url: 'https://powerbi-livid.vercel.app/', description: 'Business intelligence' },
-        { name: 'Business Supply', url: 'https://business-supply.vercel.app/', description: 'Supply chain finance' }
+        { name: 'Tax Submission', url: '/tax-submit', description: 'File taxes electronically' },
+        { name: 'Excel Practice', url: '/excel', description: 'Advanced Excel skills' },
+        { name: 'Power BI Analytics', url: '/powerbi', description: 'Business intelligence' },
+        { name: 'Business Supply', url: '/business-supply', description: 'Supply chain finance' }
       ]
     },
     {
@@ -93,15 +93,15 @@ export const UserDashboard: React.FC = () => {
       color: 'bg-purple-500',
       specializedTool: {
         name: 'ERP System',
-        url: 'https://erp-omega-blush.vercel.app/',
+        url: '/erp',
         description: 'Enterprise Resource Planning'
       },
       tools: [
-        { name: 'Odoo ERP', url: 'https://odoo-five.vercel.app/', description: 'Complete business management' },
-        { name: 'Operations Tasks', url: 'https://operations-tasks.vercel.app/', description: 'Task management' },
-        { name: 'BPM System', url: 'https://bpm-tau.vercel.app/', description: 'Business Process Management' },
-        { name: 'Document Management', url: 'https://document-management-ochre.vercel.app/', description: 'Digital document handling' },
-        { name: 'AF Workflow', url: 'https://af-workflow.vercel.app/', description: 'Automated workflows' }
+        { name: 'Odoo ERP', url: '/odoo', description: 'Complete business management' },
+        { name: 'Operations Tasks', url: '/operations-tasks', description: 'Task management' },
+        { name: 'BPM System', url: '/bpm', description: 'Business Process Management' },
+        { name: 'Document Management', url: '/document-management', description: 'Digital document handling' },
+        { name: 'AF Workflow', url: '/af-workflow', description: 'Automated workflows' }
       ]
     },
     {
@@ -112,14 +112,14 @@ export const UserDashboard: React.FC = () => {
       color: 'bg-green-500',
       specializedTool: {
         name: 'CRM System',
-        url: 'https://ghl-crm.vercel.app/',
+        url: '/ghl-crm',
         description: 'Customer Relationship Management'
       },
       tools: [
-        { name: 'Sales Workflow', url: 'https://sales-workflow.vercel.app/', description: 'Sales process automation' },
-        { name: 'E-commerce Platform', url: 'https://ecommerce-lac-five.vercel.app/', description: 'Online store management' },
-        { name: 'Appointment Booking', url: 'https://appointment-booking-steel.vercel.app/', description: 'Schedule appointments' },
-        { name: 'POS System', url: 'https://pos-eight-blush.vercel.app/', description: 'Point of Sale' }
+        { name: 'Sales Workflow', url: '/sales-workflow', description: 'Sales process automation' },
+        { name: 'E-commerce Platform', url: '/ecommerce', description: 'Online store management' },
+        { name: 'Appointment Booking', url: '/appointment-booking', description: 'Schedule appointments' },
+        { name: 'POS System', url: '/pos', description: 'Point of Sale' }
       ]
     },
     {
@@ -130,14 +130,14 @@ export const UserDashboard: React.FC = () => {
       color: 'bg-indigo-500',
       specializedTool: {
         name: 'Project Management',
-        url: 'https://project-management-chi-eight.vercel.app/',
+        url: '/project-management',
         description: 'Professional project management'
       },
       tools: [
-        { name: 'Zap Automation', url: 'https://zap-smoky-one.vercel.app/', description: 'Workflow automation' },
-        { name: 'Career Roadmap', url: 'https://roadmap-seven-xi.vercel.app/', description: 'Career planning tool' },
-        { name: 'Nexux App', url: 'https://nexux-app-delta.vercel.app/', description: 'Business integration' },
-        { name: 'Automation Tools', url: 'https://automation-five-pi.vercel.app/', description: 'Business automation' }
+        { name: 'Zap Automation', url: '/zap', description: 'Workflow automation' },
+        { name: 'Career Roadmap', url: '/roadmap', description: 'Career planning tool' },
+        { name: 'Nexux App', url: '/nexus', description: 'Business integration' },
+        { name: 'Automation Tools', url: '/automation', description: 'Business automation' }
       ]
     }
   ];
